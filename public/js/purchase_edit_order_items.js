@@ -148,6 +148,8 @@ var app = new Vue({
             .catch(error => {
                 console.log(error);
             });
+        
+        $("#app").css('opacity', 1);
             
     },
     updated: function() {
