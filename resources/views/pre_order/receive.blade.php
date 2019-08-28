@@ -75,14 +75,6 @@
                                 </tbody>
                                 <tfoot class="tx-bold tx-black">
                                     <tr>
-                                        <td colspan="9" style="text-align:right">{{__('page.total_discount')}} </td>
-                                        <td>
-                                            @{{formatPrice(discount)}}
-                                            <input type="hidden" name="discount" :value="discount" />
-                                            <input type="hidden" name="discount_string" :value="discount_string" />
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td colspan="9" style="text-align:right">{{__('page.total_amount')}} </td>
                                         <td>
                                             @{{formatPrice(grand_total)}}

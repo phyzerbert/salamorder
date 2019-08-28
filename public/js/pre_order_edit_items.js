@@ -9,12 +9,7 @@ var app = new Vue({
         total: {
             discount: 0,
             cost: 0
-        },        
-        discount: 0,
-        discount_string: 0,
-        shipping: '0',
-        shipping_string: '0',
-        returns: 0,
+        },
         grand_total: 0,
         params: {
             id: $('#order_id').val()
@@ -33,7 +28,6 @@ var app = new Vue({
                 
             axios.post('/get_pre_order',this.params)
                 .then(response => {
-                    this.discount_string = response.data.discount_string
                     for (let i = 0; i < response.data.items.length; i++) {
                         const element = response.data.items[i];
                         axios.post('/get_product', {id:element.product_id})
@@ -114,21 +108,7 @@ var app = new Vue({
             this.total.cost = total_cost
         },
         calc_grand_total() {
-            this.grand_total = this.total.cost - this.discount
-        },
-        calc_discount(){
-            let reg_patt1 = /^\d+(?:\.\d+)?%$/
-            let reg_patt2 = /^\d+$/
-            if(reg_patt1.test(this.discount_string)){
-                this.discount = this.total.cost*parseFloat(this.discount_string)/100
-                // console.log(this.discount)
-            }else if(reg_patt2.test(this.discount_string)){
-                this.discount = this.discount_string
-            }else if(this.discount_string == ''){
-                this.discount = 0
-            }else {
-                this.discount_string = '0';
-            }
+            this.grand_total = this.total.cost
         },
         formatPrice(value) {
             let val = value;
@@ -145,7 +125,6 @@ var app = new Vue({
     },
     updated: function() {
         this.calc_subtotal()
-        this.calc_discount()
         this.calc_grand_total()
     }
 });

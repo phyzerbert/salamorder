@@ -110,12 +110,6 @@ class PreOrderController extends Controller
         $item->reference_no = $data['reference_number'];
         $item->company_id = Auth::user()->company_id;
         $item->supplier_id = $data['supplier'];
-        // if($data['credit_days'] != ''){
-        //     $item->credit_days = $data['credit_days'];
-        //     $item->expiry_date = date('Y-m-d', strtotime("+".$data['credit_days']."days", strtotime($item->timestamp)));
-        // }        
-        // $item->credit_days = $data['credit_days'];
-        // $item->status = $data['status'];
         $item->note = $data['note'];
 
         if($request->has("attachment")){
@@ -123,10 +117,7 @@ class PreOrderController extends Controller
             $imageName = "purchase_order_".time().'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path('images/uploaded/purchase_order_images/'), $imageName);
             $item->attachment = 'images/uploaded/purchase_order_images/'.$imageName;
-        }
-
-        $item->discount_string = $data['order_discount_string'];
-        $item->discount = $data['order_discount'];
+        }        
         
         $item->grand_total = $data['grand_total'];
         
@@ -197,9 +188,6 @@ class PreOrderController extends Controller
             $picture->move(public_path('images/uploaded/purchase_order_images/'), $imageName);
             $item->attachment = 'images/uploaded/purchase_order_images/'.$imageName;
         }
-
-        $item->discount_string = $data['order_discount_string'];
-        $item->discount = $data['order_discount'];
 
         $item->grand_total = $data['grand_total'];
 

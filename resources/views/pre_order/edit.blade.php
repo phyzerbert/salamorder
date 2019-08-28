@@ -132,7 +132,10 @@
                                             <td colspan="2">{{__('page.total')}}</td>
                                             <td class="total_discount">@{{formatPrice(total.discount)}}</td>
                                             <td class=""></td>
-                                            <td colspan="2" class="total">@{{formatPrice(total.cost)}}</td>
+                                            <td colspan="2" class="total">
+                                                @{{formatPrice(total.cost)}}
+                                                <input type="hidden" name="grand_total" :value="grand_total">
+                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -140,21 +143,6 @@
 
                         </div>
                     </div>
-                    
-                    <div class="row mg-b-25">                        
-                        <div class="col-md-6">
-                            <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.discount')}}:</label>
-                                <input type="text" name="order_discount_string" class="form-control" v-model="discount_string" placeholder="{{__('page.discount')}}">
-                                <input type="hidden" name="order_discount" :value="discount">
-                                <input type="hidden" name="grand_total" :value="grand_total">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="text-right mt-4">{{__('page.purchase')}}: @{{formatPrice(total.cost)}} - {{__('page.discount')}}: @{{formatPrice(discount)}} = {{__('page.grand_total')}}: @{{formatPrice(grand_total)}}</p>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group mg-b-10-force">
