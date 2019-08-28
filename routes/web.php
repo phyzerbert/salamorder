@@ -86,12 +86,12 @@ Route::get('/purchase/delete/{id}', 'PurchaseController@delete')->name('purchase
 Route::any('/pre_order/index', 'PreOrderController@index')->name('pre_order.index');
 Route::get('/pre_order/create', 'PreOrderController@create')->name('pre_order.create')->middleware('role:user');
 Route::post('/pre_order/save', 'PreOrderController@save')->name('pre_order.save');
-Route::get('/pre_order/edit/{id}', 'PreOrderController@edit')->name('pre_order.edit');
+Route::get('/pre_order/edit/{id}', 'PreOrderController@edit')->name('pre_order.edit')->middleware('role:user');
 Route::post('/pre_order/update', 'PreOrderController@update')->name('pre_order.update');
 Route::get('/pre_order/detail/{id}', 'PreOrderController@detail')->name('pre_order.detail');
 Route::get('/pre_order/delete/{id}', 'PreOrderController@delete')->name('pre_order.delete');
-Route::get('/pre_order/receive/{id}', 'PreOrderController@receive')->name('pre_order.receive');
-Route::post('/pre_order/save_receive', 'PreOrderController@save_receive')->name('pre_order.save_receive');
+Route::get('/pre_order/receive/{id}', 'PreOrderController@receive')->name('pre_order.receive')->middleware('role:user');
+Route::post('/pre_order/save_receive', 'PreOrderController@save_receive')->name('pre_order.save_receive')->middleware('role:user');
 
 Route::any('/received_order/index', 'PreOrderController@received_orders')->name('received_order.index');
 Route::get('/received_order/edit/{id}', 'PreOrderController@edit_received_order')->name('received_order.edit');
