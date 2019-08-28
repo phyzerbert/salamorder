@@ -153,7 +153,7 @@
                     </div>
                     <div class="form-layout-footer text-right">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check mg-r-2"></i>{{__('page.save')}}</button>
-                        <a href="{{route('purchase.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i>{{__('page.cancel')}}</a>
+                        <a href="{{route('pre_order.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i>{{__('page.cancel')}}</a>
                     </div>
                 </form>
             </div>
