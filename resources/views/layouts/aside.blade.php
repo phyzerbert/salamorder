@@ -58,6 +58,32 @@
             </div>
         </a>
 
+        {{-- Pre Order --}}
+        @php
+            $pre_order_items = ['pre_order', 'pre_order_list', 'pre_order_create'];
+        @endphp
+
+        <a href="#" class="br-menu-link @if($page == in_array($page, $pre_order_items)) active show-sub @endif">
+            <div class="br-menu-item">
+                <i class="menu-item-icon icon ion-clipboard tx-24"></i>
+                <span class="menu-item-label op-lg-0-force d-lg-none">{{__('page.purchase_orders')}}</span>
+                <i class="menu-item-arrow op-lg-0-force d-lg-none fa fa-angle-down"></i>
+            </div>
+        </a>
+        <ul class="br-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{route('pre_order.index')}}" class="nav-link @if($page == 'pre_order_list') active @endif">{{__('page.purchase_orders')}}</a></li>
+            @if($role == 'user')
+                <li class="nav-item"><a href="{{route('pre_order.create')}}" class="nav-link @if($page == 'pre_order_create') active @endif">{{__('page.add_purchase_order')}}</a></li>
+            @endif
+        </ul>
+
+        <a href="{{route('received_order.index')}}" class="br-menu-link @if($page == 'received_order') active @endif">
+            <div class="br-menu-item">
+                <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                <span class="menu-item-label op-lg-0-force d-lg-none">{{__('page.received_orders')}}</span>
+            </div>
+        </a>
+
         @php
             $report_items = [
                 'overview_chart', 

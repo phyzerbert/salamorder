@@ -280,4 +280,14 @@ return [
     'invalid_credentials_were_provided' => 'Invalid credentials were provided',
     'internal_error' => 'Internal Error',
 
+    'purchase_order' => 'Purchase Order',
+    'purchase_orders' => 'Purchase Orders',
+    'add_purchase_order' => 'Add Purchase Orders',
+    'received_list' => 'Received List',
+    'receive' => 'Receive',
+    'ordered_quantity' => 'Ordered Quantity',
+    'received_quantity' => 'Received Quantity',
+    'total_discount' => 'Total Discount',
+    'received_successfully' => 'Received Successfully',
+    'received_orders' => 'Received Orders',
 ];
