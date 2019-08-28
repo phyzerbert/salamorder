@@ -157,7 +157,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         <a href="{{route('pre_order.index')}}" class="btn btn-secondary"><i class="fa fa-credit-card"></i>  {{__('page.purchase_order')}}</a>
-                        <a href="{{route('pre_order.received_list', $order->id)}}" class="btn btn-info"><i class="icon ion-cash"></i>  {{__('page.received_list')}}</a>
+                        <a href="{{route('received_order.index')}}?order_id={{$item->id}}" class="btn btn-info"><i class="icon ion-cash"></i>  {{__('page.received_list')}}</a>
                     </div>
                 </div>
             </div>
