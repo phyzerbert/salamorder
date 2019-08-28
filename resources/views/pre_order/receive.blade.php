@@ -55,7 +55,7 @@
                                             </td>
                                             <td>@{{item.product_code}}</td>
                                             <td>@{{item.product_name}}</td>
-                                            <td>@{{formatPrice(item.cost)}}</td>
+                                            <td>@{{formatPrice(item.cost - item.discount)}}</td>
                                             <td>@{{item.discount_string}}</td>
                                             <td>@{{item.ordered_quantity}}</td>
                                             <td>@{{item.received_quantity}}</td>
