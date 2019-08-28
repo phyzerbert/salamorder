@@ -228,6 +228,7 @@ return [
     'select_supplier' => 'Select a supplier',
     'select_customer' => 'Select a customer',
     'select_product' => 'Select a product',
+    'select_tax' => 'Select a tax',
     'select_tax_method' => 'Select a tax method',
     'purchase_date' => 'Purchase Date',
     'payment_date' => 'Payment Date',
@@ -290,4 +291,5 @@ return [
     'total_discount' => 'Total Discount',
     'received_successfully' => 'Received Successfully',
     'received_orders' => 'Received Orders',
+    'new_product' => 'New Product',
 ];

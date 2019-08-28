@@ -90,6 +90,7 @@
                             <div>
                                 <h5 class="mg-t-10" style="float:left">{{__('page.order_items')}}</h5>
                                 <a href="#" class="btn btn-primary btn-icon rounded-circle mg-b-10 add-product" style="float:right" @click="add_item()"><div><i class="fa fa-plus"></i></div></a>
+                                <a href="#" class="btn btn-sm btn-success mg-b-10 mr-3" id="btn_create_product" style="float:right"><div><i class="fa fa-plus"></i> {{__('page.new_product')}}</div></a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-colored table-success" id="product_table">
@@ -245,7 +246,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{__('page.add_product')}}</h4>
+                    <h4 class="modal-title">{{__('page.new_product')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <form action="" id="create_product_form" method="post">
@@ -270,8 +271,8 @@
                         @endphp
                         <div class="form-group">
                             <label class="form-control-label">{{__('page.barcode_symbology')}}: <span class="tx-danger">*</span></label>
-                            <select class="form-control select2" name="barcode_symbology_id" data-placeholder="{{__('page.barcode_symbology')}}" required>
-                                <option label="{{__('page.barcode_symbology')}}"></option>
+                            <select class="form-control form-control-sm" name="barcode_symbology_id" required>
+                                <option label="{{__('page.barcode_symbology')}}" hidden></option>
                                 @foreach ($barcode_symbologies as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
@@ -285,17 +286,15 @@
                         @endphp
                         <div class="form-group">
                             <label class="form-control-label">{{__('page.select_category')}}: <span class="tx-danger">*</span></label>
-                            <select class="form-control select2" name="category_id" data-placeholder="{{__('page.select_category')}}" required>
-                                <option label="{{__('page.select_category')}}"></option>
+                            <select class="form-control form-control-sm" name="category_id" required>
+                                <option label="{{__('page.select_category')}}" hidden></option>
                                 @foreach ($categories as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
-                            @error('category_id')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <span id="product_category_id_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">{{__('page.product_unit')}}: <span class="tx-danger">*</span></label>
@@ -320,18 +319,18 @@
                         @endphp
                         <div class="form-group">
                             <label class="form-control-label">{{__('page.product_tax')}}:</label>
-                            <select class="form-control select2" name="tax_id" data-placeholder="{{__('page.select_tax')}}">
-                                <option label="{{__('page.select_tax')}}"></option>
+                            <select class="form-control form-control-sm" name="tax_id">
+                                <option label="{{__('page.select_tax')}}" hidden></option>
                                 @foreach ($taxes as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">{{__('page.tax_method')}}:</label>
-                            <select class="form-control select2" name="tax_method" data-placeholder="{{__('page.select_tax_method')}}">
-                                <option label="{{__('page.select_tax_method')}}"></option>
-                                <option value="0">Inclusive</option>
+                            <label class="form-control-label">{{__('page.tax_method')}}</label>
+                            <select class="form-control form-control-sm" name="tax_method">
+                                <option label="{{__('page.select_tax_method')}}" hidden></option>
+                                <option value="0" selected>Inclusive</option>
                                 <option value="1">Exclusive</option>
                             </select>
                         </div>
@@ -340,13 +339,14 @@
                             <input class="form-control" type="number" name="alert_quantity" placeholder="{{__('page.alert_quantity')}}">
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">{{__('page.supplier')}}:</label>
-                            <select class="form-control select2-show-search" name="supplier_id" data-placeholder="{{__('page.product_supplier')}}">
+                            <label class="form-control-label">{{__('page.supplier')}}</label>
+                            <div>
+                            <select class="form-control select2-show-search wd-100p" name="supplier_id" data-placeholder="{{__('page.product_supplier')}}">
                                 <option label="{{__('page.product_supplier')}}"></option>
                                 @foreach ($suppliers as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach                                    
-                            </select>
+                            </select></div>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">{{__('page.product_image')}}:</label>                                
@@ -458,6 +458,12 @@
                 }
             });
         });
+
+        $("#btn_create_product").click(function(){
+            $("#addProductModal").modal();
+        })
+
+
 
     });
 </script>
