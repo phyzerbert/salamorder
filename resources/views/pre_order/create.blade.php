@@ -241,6 +241,133 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addProductModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{__('page.add_product')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <form action="" id="create_product_form" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_name')}}: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="name" placeholder="{{__('page.product_name')}}" required>
+                            <span id="product_name_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>                            
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_code')}}: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="code" placeholder="{{__('page.product_code')}}" required>
+                            <span id="product_code_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>
+                        </div>
+                        @php
+                            $barcode_symbologies = \App\Models\BarcodeSymbology::all();
+                        @endphp
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.barcode_symbology')}}: <span class="tx-danger">*</span></label>
+                            <select class="form-control select2" name="barcode_symbology_id" data-placeholder="{{__('page.barcode_symbology')}}" required>
+                                <option label="{{__('page.barcode_symbology')}}"></option>
+                                @foreach ($barcode_symbologies as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                            <span id="product_barcode_symbology_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>
+                        </div>
+                        @php
+                            $categories = \App\Models\Category::all();
+                        @endphp
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.select_category')}}: <span class="tx-danger">*</span></label>
+                            <select class="form-control select2" name="category_id" data-placeholder="{{__('page.select_category')}}" required>
+                                <option label="{{__('page.select_category')}}"></option>
+                                @foreach ($categories as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_unit')}}: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="unit" placeholder="{{__('page.product_unit')}}" required>
+                            <span id="product_unit_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_cost')}}: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="cost" placeholder="{{__('page.product_cost')}}" required>
+                            <span id="product_cost_error" class="invalid-feedback">
+                                <strong></strong>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_price')}}: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="price" placeholder="{{__('page.product_price')}}" required>
+                        </div>
+                        @php
+                            $taxes = \App\Models\Tax::all();
+                        @endphp
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_tax')}}:</label>
+                            <select class="form-control select2" name="tax_id" data-placeholder="{{__('page.select_tax')}}">
+                                <option label="{{__('page.select_tax')}}"></option>
+                                @foreach ($taxes as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.tax_method')}}:</label>
+                            <select class="form-control select2" name="tax_method" data-placeholder="{{__('page.select_tax_method')}}">
+                                <option label="{{__('page.select_tax_method')}}"></option>
+                                <option value="0">Inclusive</option>
+                                <option value="1">Exclusive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.alert_quantity')}}:</label>
+                            <input class="form-control" type="number" name="alert_quantity" placeholder="{{__('page.alert_quantity')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.supplier')}}:</label>
+                            <select class="form-control select2-show-search" name="supplier_id" data-placeholder="{{__('page.product_supplier')}}">
+                                <option label="{{__('page.product_supplier')}}"></option>
+                                @foreach ($suppliers as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach                                    
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_image')}}:</label>                                
+                            <label class="custom-file wd-100p">
+                                <input type="file" name="image" id="file2" class="file-input-styled" accept="image/*">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">{{__('page.product_detail')}}:</label>
+                            <textarea class="form-control" name="detail" rows="5" placeholder="{{__('page.product_detail')}}"></textarea>
+                        </div>
+                    </div>    
+                    <div class="modal-footer">
+                        <button type="button" id="btn_create_product" class="btn btn-primary btn-submit"><i class="fa fa-check mg-r-10"></i>&nbsp;{{__('page.save')}}</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times mg-r-10"></i>&nbsp;{{__('page.close')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('script')
 <script src="{{asset('master/lib/select2/js/select2.min.js')}}"></script>
