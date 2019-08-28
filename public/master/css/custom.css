@@ -171,11 +171,10 @@ table.table-hover tbody tr:hover td{
   } */
 
 .select2-container--open {
-    width: 100% !important;
-    z-index: 9999999;
+    z-index: 999999999;
 }
 
-.select2-container--default {
+.modal .select2-container--default {
     width: 100% !important;
 }
 

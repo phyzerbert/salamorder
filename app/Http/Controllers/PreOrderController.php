@@ -261,12 +261,12 @@ class PreOrderController extends Controller
     public function save_receive(Request $request){
         $request->validate([
             'store' => 'required',
+            'reference_number' => 'required',
         ]);
         $data = $request->all();
         if(!isset($data['item']) ||  count($data['item']) == 0 || in_array(null, $data['item'])){
             return back()->withErrors(['product' => __('page.select_product')]);
         }
-        // dd($data);
         $order = PreOrder::find($data['id']);
         $purchase = new Purchase();
         $purchase->order_id = $order->id;
@@ -275,7 +275,7 @@ class PreOrderController extends Controller
         $store = Store::find($data['store']);
         $purchase->company_id = $store->company_id;
         $purchase->supplier_id = $order->supplier_id;
-        $purchase->reference_no = $order->reference_no;
+        $purchase->reference_no = $data['reference_number'];
         $purchase->timestamp = $order->timestamp;
         $purchase->discount = $data['discount'];
         $purchase->discount_string = $data['discount_string'];
@@ -287,7 +287,7 @@ class PreOrderController extends Controller
             $order_item = PreOrderItem::find($value);
             Order::create([
                 'product_id' => $order_item->product_id,
-                'cost' => $order_item->cost,
+                'cost' => $order_item->cost - $order_item->discount,
                 'quantity' => $data['receive_quantity'][$value],
                 'subtotal' => $data['subtotal'][$value],
                 'pre_order_item_id' => $value,

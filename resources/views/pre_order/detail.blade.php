@@ -89,7 +89,8 @@
                             <thead>
                                 <tr>
                                     <th class="wd-40">#</th>
-                                    <th>{{__('page.product_name_code')}}</th>
+                                    <th>{{__('page.product_code')}}</th>
+                                    <th>{{__('page.product_name')}}</th>
                                     <th>{{__('page.product_cost')}}</th>
                                     <th>{{__('page.discount')}}</th>
                                     <th>{{__('page.quantity')}}</th>
@@ -111,8 +112,9 @@
                                     @endphp
                                     <tr>
                                         <td>{{$loop->index+1}}</td>
-                                        <td>@isset($item->product->name){{$item->product->name}} ({{$item->product->code}})@endisset</td>
-                                        <td>{{$item->cost}}</td>
+                                        <td>@isset($item->product->code){{$item->product->code}}@endisset</td>
+                                        <td>@isset($item->product->name){{$item->product->name}}@endisset</td>
+                                        <td>{{number_format($item->cost - $item->discount)}}</td>
                                         <td>
                                             @if(strpos( $item->discount_string , '%' ) !== false)
                                                 {{$item->discount_string}} ({{number_format($item->discount)}})
@@ -125,7 +127,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="3" class="tx-bold">{{__('page.total')}} </td>
+                                    <td colspan="4" class="tx-bold">{{__('page.total')}} </td>
                                     <td>{{$total_discount}}</td>
                                     <td></td>
                                     <td>{{number_format($total_amount)}}</td>
@@ -133,7 +135,7 @@
                             </tbody>
                             <tfoot class="tx-bold tx-black">
                                 <tr>
-                                    <td colspan="5" style="text-align:right">{{__('page.discount')}} </td>
+                                    <td colspan="6" style="text-align:right">{{__('page.discount')}} </td>
                                     <td>
                                         @if(strpos( $order->discount_string , '%' ) !== false)
                                             {{$order->discount_string}} ({{number_format($order->discount)}})
@@ -143,7 +145,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="5" style="text-align:right">{{__('page.total_amount')}} </td>
+                                    <td colspan="6" style="text-align:right">{{__('page.total_amount')}} </td>
                                     <td>{{number_format($order->grand_total)}}</td>
                                 </tr>
                             </tfoot>

@@ -31,7 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th class="wd-40">#</th>
-                                        <th>{{__('page.product_name_code')}}</th>
+                                        <th>{{__('page.product_code')}}</th>
+                                        <th>{{__('page.product_name')}}</th>
                                         <th>{{__('page.product_cost')}}</th>
                                         <th>{{__('page.discount')}}</th>
                                         <th>{{__('page.ordered_quantity')}}</th>
@@ -52,7 +53,8 @@
                                                     <input type="checkbox" :name="'item[' + item.item_id +']'" :value="item.item_id"><span></span>
                                                 </label>
                                             </td>
-                                            <td>@{{item.product_name_code}}</td>
+                                            <td>@{{item.product_code}}</td>
+                                            <td>@{{item.product_name}}</td>
                                             <td>@{{formatPrice(item.cost)}}</td>
                                             <td>@{{item.discount_string}}</td>
                                             <td>@{{item.ordered_quantity}}</td>
@@ -65,7 +67,7 @@
                                             </td>
                                         </tr>
                                     <tr>
-                                        <td colspan="3" class="tx-bold">{{__('page.total')}} </td>
+                                        <td colspan="4" class="tx-bold">{{__('page.total')}} </td>
                                         <td>@{{formatPrice(total.discount)}}</td>
                                         <td colspan="4"></td>
                                         <td>@{{formatPrice(total.cost)}}</td>
@@ -73,7 +75,7 @@
                                 </tbody>
                                 <tfoot class="tx-bold tx-black">
                                     <tr>
-                                        <td colspan="8" style="text-align:right">{{__('page.total_discount')}} </td>
+                                        <td colspan="9" style="text-align:right">{{__('page.total_discount')}} </td>
                                         <td>
                                             @{{formatPrice(discount)}}
                                             <input type="hidden" name="discount" :value="discount" />
@@ -81,7 +83,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="8" style="text-align:right">{{__('page.total_amount')}} </td>
+                                        <td colspan="9" style="text-align:right">{{__('page.total_amount')}} </td>
                                         <td>
                                             @{{formatPrice(grand_total)}}
                                             <input type="hidden" name="grand_total" :value="grand_total" />
@@ -90,7 +92,7 @@
                                 </tfoot>
                             </table>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group mg-b-10-force">
                                         <label class="form-control-label">{{__('page.store')}}:</label>
                                         <select class="form-control select2" name="store" data-placeholder="{{__('page.select_store')}}">
@@ -105,7 +107,18 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6 mt-4 text-right">
+                                <div class="col-md-4">
+                                    <div class="form-group mg-b-10-force">
+                                        <label class="form-control-label">{{__('page.reference_number')}}:</label>
+                                        <input class="form-control" type="text" name="reference_number" value="{{ old('reference_number') }}" required placeholder="{{__('page.reference_number')}}">
+                                        @error('reference_number')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-4 text-right">
                                     <a href="{{route('pre_order.index')}}" class="btn btn-success"><i class="menu-item-icon icon ion-clipboard tx-16"></i>  {{__('page.purchase_order')}}</a>
                                     <button type="submit" class="btn btn-primary ml-3"><i class="menu-item-icon icon ion-archive tx-16"></i>  {{__('page.receive')}}</button>
                                 </div>
