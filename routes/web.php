@@ -69,6 +69,7 @@ Route::get('/tax_rate/delete/{id}', 'TaxRateController@delete')->name('tax_rate.
 Route::any('/product/index', 'ProductController@index')->name('product.index');
 Route::get('/product/create', 'ProductController@create')->name('product.create');
 Route::post('/product/save', 'ProductController@save')->name('product.save');
+Route::post('/product/ajax_create', 'ProductController@ajax_create')->name('product.ajax_create');
 Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
 Route::post('/product/update', 'ProductController@update')->name('product.update');
 Route::get('/product/detail/{id}', 'ProductController@detail')->name('product.detail');
