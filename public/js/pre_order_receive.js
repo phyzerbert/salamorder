@@ -31,7 +31,7 @@ var app = new Vue({
                                             product_id: element.product_id,
                                             product_code: response1.data.code,
                                             product_name: response1.data.name,
-                                            cost: element.cost - element.discount,
+                                            cost: element.cost,
                                             discount: element.discount,
                                             discount_string: element.discount_string,
                                             ordered_quantity: element.quantity,
