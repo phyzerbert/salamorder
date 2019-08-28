@@ -120,7 +120,7 @@ Route::get('get_first_product', 'VueController@get_first_product');
 Route::post('get_data', 'VueController@get_data');
 Route::post('get_pre_order', 'VueController@get_pre_order');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');
-Route::post('get_autocomplete_products', 'VueController@get_received_quantity');
+Route::post('get_autocomplete_products', 'VueController@get_autocomplete_products');
 
 // ******** Report ********
 
