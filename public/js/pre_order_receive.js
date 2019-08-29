@@ -13,6 +13,7 @@ var app = new Vue({
             id: $('#order_id').val()
         },
         grand_total: 0,
+        keyword : '',
     },
 
     methods:{
@@ -74,6 +75,10 @@ var app = new Vue({
         formatPrice(value) {
             let val = value;
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+        searchProduct() {
+            const keyword = this.keyword;
+            
         }
     },
 
@@ -84,6 +89,7 @@ var app = new Vue({
     updated: function() {
         this.calc_subtotal()
         this.calc_grand_total()
+        this.searchProduct()
     }    
 });
 

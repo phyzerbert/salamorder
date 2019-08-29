@@ -183,36 +183,6 @@
                                     <strong></strong>
                                 </span>
                             </div>
-                            @php
-                                $barcode_symbologies = \App\Models\BarcodeSymbology::all();
-                            @endphp
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.barcode_symbology')}}: <span class="tx-danger">*</span></label>
-                                <select class="form-control form-control-sm barcode_symbology" name="barcode_symbology_id">
-                                    <option label="{{__('page.barcode_symbology')}}" hidden></option>
-                                    @foreach ($barcode_symbologies as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                                <span id="product_barcode_symbology_error" class="invalid-feedback">
-                                    <strong></strong>
-                                </span>
-                            </div>
-                            @php
-                                $categories = \App\Models\Category::all();
-                            @endphp
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.select_category')}}: <span class="tx-danger">*</span></label>
-                                <select class="form-control form-control-sm category_id" name="category_id">
-                                    <option label="{{__('page.select_category')}}" hidden></option>
-                                    @foreach ($categories as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                                <span id="product_category_error" class="invalid-feedback">
-                                    <strong></strong>
-                                </span>
-                            </div>
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.product_unit')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control" type="text" name="unit" placeholder="{{__('page.product_unit')}}" required>
@@ -228,54 +198,10 @@
                                 </span>
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label">{{__('page.product_price')}}: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="price" placeholder="{{__('page.product_price')}}" required>
-                            </div>
-                            @php
-                                $taxes = \App\Models\Tax::all();
-                            @endphp
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.product_tax')}}:</label>
-                                <select class="form-control form-control-sm" name="tax_id" required>
-                                    <option label="{{__('page.select_tax')}}" hidden></option>
-                                    @foreach ($taxes as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.tax_method')}}</label>
-                                <select class="form-control form-control-sm" name="tax_method">
-                                    <option label="{{__('page.select_tax_method')}}" hidden></option>
-                                    <option value="0" selected>Inclusive</option>
-                                    <option value="1">Exclusive</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.alert_quantity')}}:</label>
-                                <input class="form-control" type="number" name="alert_quantity" placeholder="{{__('page.alert_quantity')}}">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.supplier')}}</label>
-                                <select class="form-control select2-show-search wd-100p supplier" name="supplier_id" data-placeholder="{{__('page.product_supplier')}}">
-                                    <option label="{{__('page.product_supplier')}}"></option>
-                                    @foreach ($suppliers as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach                                    
-                                </select>
-                                <span id="product_supplier_error" class="invalid-feedback">
-                                    <strong></strong>
-                                </span>
-                            </div>
-                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.product_image')}}:</label>                                
                                 <label class="custom-file wd-100p">
                                     <input type="file" name="image" id="product_image" class="file-input-styled" accept="image/*">
                                 </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">{{__('page.product_detail')}}:</label>
-                                <textarea class="form-control" name="detail" rows="5" placeholder="{{__('page.product_detail')}}"></textarea>
                             </div>
                         </div>    
                         <div class="modal-footer">

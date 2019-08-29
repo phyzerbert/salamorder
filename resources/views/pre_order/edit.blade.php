@@ -86,7 +86,7 @@
                         <div class="col-md-12">
                             <div>
                                 <h5 class="mg-t-10" style="float:left">{{__('page.order_items')}}</h5>
-                                <a href="#" class="btn btn-primary btn-icon rounded-circle mg-b-10 add-product" style="float:right" @click="add_item()"><div><i class="fa fa-plus"></i></div></a>
+                                <button type="button" class="btn btn-primary btn-icon rounded-circle mg-b-10 add-product" title="{{__('page.right_ctrl_key')}}" style="float:right" @click="add_item()"><div><i class="fa fa-plus"></i></div></button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-colored table-success" id="product_table">

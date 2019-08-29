@@ -89,9 +89,7 @@ var app = new Vue({
             axios.post('/product/ajax_create', formData)
                 .then(response => {
                     $("#ajax-loading").hide();
-                    console.log(response.data);
-                    if(response.data.id != null) {
-                        $("#addProductModal").modal('hide');
+                    if(response.data.id != null) {                        
                         this.order_items.push({
                             product_id: response.data.id,
                             product_name_code: response.data.name + "(" + response.data.code + ")",
@@ -99,12 +97,12 @@ var app = new Vue({
                             discount: 0,
                             discount_string: 0,
                             quantity: 1,
-                            expiry_date: "",
                             sub_total: 0,
                         })
                     }else{
                         alert("Something went wrong");
                     }
+                    $("#addProductModal").modal('hide');
                 })
                 .catch(error => {
                     $("#ajax-loading").hide();
@@ -122,28 +120,10 @@ var app = new Vue({
                             $('#create_form .code').focus();
                         }
 
-                        if(messages.barcode_symbology_id) {
-                            $('#product_barcode_symbology_error strong').text(messages.barcode_symbology_id[0]);
-                            $('#product_barcode_symbology_error').show();
-                            $('#product_create_form .barcode_symbology').focus();
-                        }
-
                         if(messages.unit) {
                             $('#product_unit_error strong').text(messages.unit[0]);
                             $('#product_unit_error').show();
                             $('#product_create_form .unit').focus();
-                        }
-
-                        if(messages.category_id) {
-                            $('#product_category_error strong').text(messages.category_id[0]);
-                            $('#product_category_error').show();
-                            $('#product_create_form .category_id').focus();
-                        }
-
-                        if(messages.price) {
-                            $('#product_price_error strong').text(messages.price[0]);
-                            $('#product_price_error').show();
-                            $('#product_create_form .price').focus();
                         }
 
                         if(messages.cost) {

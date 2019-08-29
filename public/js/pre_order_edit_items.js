@@ -158,5 +158,14 @@ var app = new Vue({
                 app.order_items[index].sub_total = ui.item.cost
             }
         });
+    },
+    created: function() {
+        var self = this
+        $(document).keydown(function(e){
+            console.log(e.keyCode)
+            if(e.keyCode == 21 || e.keyCode == 17 || e.keyCode == 25){
+                self.add_item()
+            }
+        });
     }
 });
