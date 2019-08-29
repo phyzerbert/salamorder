@@ -23,7 +23,7 @@
                     <div class="col-md-12 table-responsive">
                         <div class="pd-t-20 py-3">
                             <h4 class="tx-gray-800 mb-3 float-left"><i class="fa fa-info-circle"></i> {{__('page.receive')}}</h4>
-                            <input type="text" class="form-control form-control-sm float-right" style="width:300px;" name="" id="" v-model="keyword" placeholder="Product Name">
+                            <input type="text" class="form-control form-control-sm float-right" style="width:300px;" name="" id="" v-model="keyword" placeholder="Product Name" @keyup="searchProduct">
                         </div>                        
                         <form action="{{route('pre_order.save_receive')}}" method="post">
                             @csrf

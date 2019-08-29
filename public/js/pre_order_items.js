@@ -185,7 +185,11 @@ var app = new Vue({
             if(e.keyCode == 21 || e.keyCode == 17 || e.keyCode == 25){
                 self.add_item()
             }else if(e.keyCode == 16){
-                $("#addProductModal").modal();
+                if($("#addProductModal").hasClass("show")){
+                    $("#addProductModal").modal('hide');
+                } else {
+                    $("#addProductModal").modal();
+                }                
             }
         });
     }

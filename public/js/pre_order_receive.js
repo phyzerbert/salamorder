@@ -4,6 +4,7 @@ var app = new Vue({
     data: {
         order_items: [],
         checked_items: [],
+        filtered_items: [],
         products: [],
         total: {
             discount: 0,
@@ -40,6 +41,7 @@ var app = new Vue({
                                             sub_total: element.subtotal,
                                             item_id: element.id,
                                         })
+                                        
                                     })
                                     .catch(error => {
                                         console.log(error);
@@ -49,6 +51,10 @@ var app = new Vue({
                                 console.log(error);
                             });                    
                     }
+
+                    Vue.nextTick(function() {
+                        this.filtered_items = this.order_items
+                    });
                 })
                 .catch(error => {
                     console.log(error);
@@ -78,7 +84,13 @@ var app = new Vue({
         },
         searchProduct() {
             const keyword = this.keyword;
-            
+            let data = this.order_items
+            this.filtered_items = []
+            for(let i = 0; i < data.length; i++) {
+                if((data[i].product_name.indexOf(keyword) == -1) && (data[i].product_code.indexOf(keyword) == -1)) continue;
+                this.order_items.shift(-1)
+            }
+            console.log(keyword)
         }
     },
 
@@ -89,7 +101,6 @@ var app = new Vue({
     updated: function() {
         this.calc_subtotal()
         this.calc_grand_total()
-        this.searchProduct()
     }    
 });
 
