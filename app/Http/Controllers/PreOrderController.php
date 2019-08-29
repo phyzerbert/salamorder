@@ -265,8 +265,6 @@ class PreOrderController extends Controller
         $purchase->supplier_id = $order->supplier_id;
         $purchase->reference_no = $data['reference_number'];
         $purchase->timestamp = $order->timestamp;
-        $purchase->discount = $data['discount'];
-        $purchase->discount_string = $data['discount_string'];
         $purchase->grand_total = $data['grand_total'];
         $purchase->note = $order->note;
         $purchase->save();
