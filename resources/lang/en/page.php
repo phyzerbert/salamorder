@@ -293,4 +293,5 @@ return [
     'received_orders' => 'Received Orders',
     'new_product' => 'New Product',
     'right_ctrl_key' => 'Right Ctrl Key',
+    'buyer' => 'Buyer',
 ];
