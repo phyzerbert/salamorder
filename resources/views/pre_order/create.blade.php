@@ -123,7 +123,7 @@
                                                 <input type="hidden" name="subtotal[]" :value="item.sub_total" />
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-warning btn-icon rounded-circle mg-t-3 remove-product" @click="remove(i)"><div style="width:25px;height:25px;"><i class="fa fa-times"></i></div></a>
+                                                <button type="button" class="btn btn-warning btn-icon rounded-circle mg-t-3 remove-product" @click="remove(i)"><div style="width:25px;height:25px;"><i class="fa fa-times"></i></div></button>
                                             </td>
                                         </tr>
                                     </tbody>
