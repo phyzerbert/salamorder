@@ -3,6 +3,7 @@ var app = new Vue({
 
     data: {
         order_items: [],
+        checked_items: [],
         products: [],
         total: {
             discount: 0,
@@ -63,6 +64,7 @@ var app = new Vue({
             let total_cost = 0;
 
             for(let i = 0; i < data.length; i++) {
+                if(this.checked_items.indexOf(data[i].item_id) == -1) continue;
                 this.order_items[i].sub_total = (parseInt(data[i].cost) - parseInt(data[i].discount)) * data[i].receive_quantity
                 total_discount += parseInt(data[i].discount) * data[i].receive_quantity
                 total_cost += data[i].sub_total
