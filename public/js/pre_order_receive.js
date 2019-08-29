@@ -90,7 +90,6 @@ var app = new Vue({
                 if((data[i].product_name.indexOf(keyword) == -1) && (data[i].product_code.indexOf(keyword) == -1)) continue;
                 this.filtered_items.push(data[i])
             }
-            console.log(keyword)
         }
     },
 
@@ -104,7 +103,6 @@ var app = new Vue({
     },
     created: function() {
         this.filtered_items = this.order_items
-        console.log(this.filtered_items)
     }
 });
 
