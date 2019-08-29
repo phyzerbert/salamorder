@@ -135,16 +135,6 @@
                             </tbody>
                             <tfoot class="tx-bold tx-black">
                                 <tr>
-                                    <td colspan="6" style="text-align:right">{{__('page.discount')}} </td>
-                                    <td>
-                                        @if(strpos( $order->discount_string , '%' ) !== false)
-                                            {{$order->discount_string}} ({{number_format($order->discount)}})
-                                        @else
-                                            {{number_format($order->discount)}}
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td colspan="6" style="text-align:right">{{__('page.total_amount')}} </td>
                                     <td>{{number_format($order->grand_total)}}</td>
                                 </tr>
