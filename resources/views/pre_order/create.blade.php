@@ -89,8 +89,8 @@
                         <div class="col-md-12">
                             <div>
                                 <h5 class="mg-t-10" style="float:left">{{__('page.order_items')}}</h5>
-                                <a href="#" class="btn btn-primary btn-icon rounded-circle mg-b-10 add-product" style="float:right" @click="add_item()"><div><i class="fa fa-plus"></i></div></a>
-                                <a href="#" class="btn btn-sm btn-success mg-b-10 mr-3" id="btn_create_product" style="float:right"><div><i class="fa fa-plus"></i> {{__('page.new_product')}}</div></a>
+                                <button type="button" class="btn btn-primary btn-icon rounded-circle mg-b-10 add-product" title="{{__('page.right_ctrl_key')}}" style="float:right" @click="add_item()"><div><i class="fa fa-plus"></i></div></button>
+                                <button type="button" class="btn btn-sm btn-success mg-b-10 mr-3" id="btn_create_product" title="Shift Key" style="float:right"><div><i class="fa fa-plus"></i> {{__('page.new_product')}}</div></button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-colored table-success" id="product_table">
@@ -108,7 +108,7 @@
                                         <tr v-for="(item,i) in order_items" :key="i">
                                             <td>
                                                 <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
-                                                <input type="text" name="product_name[]" class="form-control form-control-sm product" v-model="item.product_name_code" required />
+                                                <input type="text" name="product_name[]" ref="product" class="form-control form-control-sm product" v-model="item.product_name_code" required />
                                             </td>
                                             {{-- <td><input type="date" class="form-control form-control-sm expiry_date" name="expiry_date[]" autocomplete="off" v-model="item.expiry_date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="{{__('page.expiry_date')}}" /></td> --}}
                                             <td><input type="number" class="form-control form-control-sm cost" name="cost[]" v-model="item.cost" required placeholder="{{__('page.product_cost')}}" /></td>

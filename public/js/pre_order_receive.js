@@ -12,8 +12,6 @@ var app = new Vue({
         params: {
             id: $('#order_id').val()
         },
-        discount: 0,
-        discount_string: 0,
         grand_total: 0,
     },
 
@@ -21,7 +19,6 @@ var app = new Vue({
         init() {
             axios.post('/get_pre_order',this.params)
                 .then(response => {
-                    this.discount_string = response.data.discount_string
                     for (let i = 0; i < response.data.items.length; i++) {
                         const element = response.data.items[i];
                         axios.post('/get_product', {id:element.product_id})
@@ -42,7 +39,6 @@ var app = new Vue({
                                             sub_total: element.subtotal,
                                             item_id: element.id,
                                         })
-                                        console.log(this.order_items)
                                     })
                                     .catch(error => {
                                         console.log(error);

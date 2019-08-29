@@ -32,9 +32,6 @@ class PreOrderController extends Controller
         $companies = Company::all();
 
         $mod = new PreOrder();
-        if($user->role->slug == 'user'){
-            $mod = $user->company->pre_orders();
-        }
         $company_id = $reference_no = $supplier_id = $period = $expiry_period = $keyword = '';
         $sort_by_date = 'desc';
         if ($request->get('company_id') != ""){
@@ -304,10 +301,10 @@ class PreOrderController extends Controller
         $companies = Company::all();
 
         $mod = new Purchase();
-        if($user->role->slug == 'user'){
-            $mod = $user->company->purchases();
-            $stores = $user->company->stores;
-        }
+        // if($user->role->slug == 'user'){
+        //     $mod = $user->company->purchases();
+        //     $stores = $user->company->stores;
+        // }
         $mod = $mod->whereNotNull('order_id');
         $order_id = $company_id = $reference_no = $supplier_id = $store_id = $period = $keyword = '';
         $sort_by_date = 'desc';

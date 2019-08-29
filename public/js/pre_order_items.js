@@ -35,6 +35,9 @@ var app = new Vue({
                         expiry_date: "",
                         sub_total: 0,
                     })
+                    Vue.nextTick(function() {
+                        app.$refs['product'][app.$refs['product'].length - 1].select()
+                    });
                 })
                 .catch(error => {
                     console.log(error);
@@ -194,7 +197,18 @@ var app = new Vue({
                 app.order_items[index].sub_total = ui.item.cost
             }
         });
-    }    
+    },
+    created: function() {
+        var self = this
+        $(document).keydown(function(e){
+            console.log(e.keyCode)
+            if(e.keyCode == 21 || e.keyCode == 17 || e.keyCode == 25){
+                self.add_item()
+            }else if(e.keyCode == 16){
+                $("#addProductModal").modal();
+            }
+        });
+    }
 });
 
 
