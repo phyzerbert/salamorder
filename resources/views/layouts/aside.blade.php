@@ -75,7 +75,7 @@
             </a>
             <ul class="br-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{route('pre_order.index')}}" class="nav-link @if($page == 'pre_order_list') active @endif">{{__('page.purchase_orders')}}</a></li>
-                @if($role == 'user')
+                @if($role == 'user' || $role == 'buyer')
                     <li class="nav-item"><a href="{{route('pre_order.create')}}" class="nav-link @if($page == 'pre_order_create') active @endif">{{__('page.add_purchase_order')}}</a></li>
                 @endif
             </ul>
