@@ -88,7 +88,7 @@ var app = new Vue({
             this.filtered_items = []
             for(let i = 0; i < data.length; i++) {
                 if((data[i].product_name.indexOf(keyword) == -1) && (data[i].product_code.indexOf(keyword) == -1)) continue;
-                this.order_items.shift(-1)
+                this.filtered_items.push(data[i])
             }
             console.log(keyword)
         }
@@ -101,7 +101,11 @@ var app = new Vue({
     updated: function() {
         this.calc_subtotal()
         this.calc_grand_total()
-    }    
+    },
+    created: function() {
+        this.filtered_items = this.order_items
+        console.log(this.filtered_items)
+    }
 });
 
 

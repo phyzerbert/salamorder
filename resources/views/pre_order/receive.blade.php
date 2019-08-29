@@ -48,7 +48,7 @@
                                         $total_discount = 0;
                                         $total_amount = 0;
                                     @endphp
-                                        <tr v-for="(item,i) in order_items" :key="i">
+                                        <tr v-for="(item,i) in filtered_items" :key="i">
                                             <td>
                                                 <label class="ckbox ckbox-success">
                                                     <input type="checkbox" :name="'item[' + item.item_id +']'" :value="item.item_id" v-model="checked_items"><span></span>
