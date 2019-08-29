@@ -97,11 +97,9 @@
                                     <thead>
                                         <tr>
                                             <th>{{__('page.product_name_code')}}</th>
-                                            {{-- <th>{{__('page.expiry_date')}}</th> --}}
                                             <th>{{__('page.product_cost')}}</th>
                                             <th>{{__('page.discount')}}</th>
                                             <th>{{__('page.quantity')}}</th>
-                                            {{-- <th>{{__('page.product_tax')}}</th> --}}
                                             <th>{{__('page.subtotal')}}</th>
                                             <th style="width:30px"></th>
                                         </tr>

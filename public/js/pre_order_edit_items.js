@@ -15,7 +15,6 @@ var app = new Vue({
             id: $('#order_id').val()
         }
     },
-
     methods:{
         init() {
             axios.get('/get_products')
@@ -41,7 +40,7 @@ var app = new Vue({
                                 quantity: element.quantity,
                                 sub_total: element.subtotal,
                                 item_id: element.id,
-                            })
+                            })                           
                         })
                         .catch(error => {
                             console.log(error);
@@ -78,7 +77,7 @@ var app = new Vue({
                 discount_string: 0,
                 quantity: 0,
                 sub_total: 0,
-            })
+            })            
         },
         calc_subtotal() {
             data = this.order_items
@@ -126,5 +125,38 @@ var app = new Vue({
     updated: function() {
         this.calc_subtotal()
         this.calc_grand_total()
+
+        $(".product").autocomplete({
+            source : function( request, response ) {
+                axios.post('/get_autocomplete_products', { keyword : request.term })
+                    .then(resp => {
+                        // response(resp.data);
+                        response(
+                            $.map(resp.data, function(item) {
+                                return {
+                                    label: item.name + "(" + item.code + ")",
+                                    value: item.name + "(" + item.code + ")",
+                                    id: item.id,
+                                    cost: item.cost,
+                                }
+                            })
+                        );
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    }
+                );
+            }, 
+            minLength: 1,
+            select: function( event, ui ) {
+                let index = $(".product").index($(this));
+                app.order_items[index].product_id = ui.item.id
+                app.order_items[index].product_name_code = ui.item.label
+                app.order_items[index].cost = ui.item.cost
+                app.order_items[index].discount = 0
+                app.order_items[index].quantity = 1
+                app.order_items[index].sub_total = ui.item.cost
+            }
+        });
     }
 });
